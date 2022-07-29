@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import size from "../../utils/Size";
+import size from "../../../utils/Size";
 
 const style = StyleSheet.create({
     image: {
@@ -7,13 +7,11 @@ const style = StyleSheet.create({
         height: size.size241,
         marginTop: size.size99,
     },
-
     body: {
         backgroundColor: "#F5F5F5",
         width: "100%",
         height: "100%",
         alignItems: "center",
-        justifyContent: "center",
     },
     login: {
         fontWeight: "600",
@@ -70,7 +68,9 @@ const style = StyleSheet.create({
         fontSize: size.size14,
         lineHeight: size.size16,
     },
-
+    container: {
+        flex: 1
+    },
 });
 export default style;
 

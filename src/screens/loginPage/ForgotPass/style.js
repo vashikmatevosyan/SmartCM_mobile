@@ -1,7 +1,12 @@
 import {StyleSheet} from "react-native";
-import size from "../../utils/Size";
+import size from "../../../utils/Size";
 
 const style = StyleSheet.create({
+    body: {
+        backgroundColor: "#F5F5F5",
+        width: "100%",
+        height: "100%",
+    },
     image: {
         width: size.size192,
         height: size.size218,
@@ -83,7 +88,10 @@ const style = StyleSheet.create({
     },
     bold: {
         fontWeight: 'bold'
-    }
+    },
+    container: {
+        flex: 1
+    },
 })
 
 export default style;

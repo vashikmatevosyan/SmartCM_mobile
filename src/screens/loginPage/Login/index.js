@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import {Button, Image, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Button, Image, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
-import  img from '../../assets/images/img.png'
+import  img from '../../../assets/images/img.png'
 import style from "./style";
-import PeopleSvg from "../../assets/svges/PeopleSvg";
-import PasSvg from "../../assets/svges/PasSvg";
-import EyeSvg from "../../assets/svges/EyeSvg";
+import PeopleSvg from "../../../assets/svges/PeopleSvg";
+import PasSvg from "../../../assets/svges/PasSvg";
+import EyeSvg from "../../../assets/svges/EyeSvg";
 
 function Index(props) {
-    const [show , setShow] = useState(false)
+    const [show , setShow] = useState(true)
     const navigation = useNavigation();
     const onPressLogin = () => {
       navigation.navigate("ForgotPass")
@@ -17,6 +17,10 @@ function Index(props) {
         setShow(!show)
     }
     return (
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={style.container}
+        >
         <View style={style.body}>
             <Image
                 style={style.image}
@@ -41,6 +45,7 @@ function Index(props) {
             <Text style={style.forget} onPress={onPressLogin}>Forgot password?</Text>
             </View>
         </View>
+        </KeyboardAvoidingView>
     );
 }
 

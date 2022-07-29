@@ -1,9 +1,9 @@
 import React from 'react';
-import {Button, Image, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {Button, Image, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
-import  img from '../../assets/images/forgotPage.png'
+import  img from '../../../assets/images/forgotPage.png'
 import style from "./style";
-import PeopleSvg from "../../assets/svges/PeopleSvg";
+import PeopleSvg from "../../../assets/svges/PeopleSvg";
 
 function Index(props) {
     const navigation = useNavigation();
@@ -11,6 +11,10 @@ function Index(props) {
         navigation.navigate("Login")
     }
     return (
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={style.container}
+        >
         <View style={style.body}>
             <Image
                 style={style.image}
@@ -31,6 +35,7 @@ function Index(props) {
                 <Text style={style.backLogin} onPress={onPressLogin}>Back To <Text style={style.bold}>Login</Text></Text>
             </View>
         </View>
+        </KeyboardAvoidingView>
     );
 }
 
