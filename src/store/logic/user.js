@@ -1,23 +1,27 @@
 import { createLogic } from 'redux-logic';
-import { USER_DATA_REQUEST, USER_DATA_SUCCESS , USER_DATA_FAIL } from "../actions/user";
-import axios from "react-native/Libraries/Settings/Settings";
+import {GET_LOGIN_REQUEST, GET_LOGIN_CANCEL,GET_LOGIN_SUCCESS, GET_LOGIN_FAIL, } from '../actions/user'
+import Api from "../../depenses/api/Api";
+import { createNavigationContainerRef } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 
-export const userDataLogic = createLogic({
-    // declarative built-in functionality wraps your code
-    type: USER_DATA_REQUEST, // only apply this logic to this type
-    latest: true, // only take latest
+const navigationRef = createNavigationContainerRef()
+export  const fetchGetLogin = createLogic({
 
-    // your code here, hook into one or more of these execution
-    // phases: validate, transform, and/or process
+    type: GET_LOGIN_REQUEST,
+    cancelType: GET_LOGIN_CANCEL,
+    latest: true,
+
     process({ getState, action }, dispatch, done) {
-        axios
-            .get('https://survey.codewinds.com/polls')
-            // .then((resp) => resp.data.polls)
-            .then((resp) => dispatch({ type: USER_DATA_REQUEST, payload: resp.data }))
-            .catch((err) => {
-                console.error(err); // log since could be render err
-                dispatch({ });
+        Api.userLogin(action.payload)
+            .then((data) => {
+                dispatch({type: GET_LOGIN_SUCCESS, payload: data});
+                navigationRef.navigate('TabNavigation');
             })
-            .then(() => done()); // call done when finished dispatching
+
+            .catch((err) => {
+                console.error(err);
+                dispatch({ type: GET_LOGIN_FAIL, payload: err, error: true });
+            })
+            .then(() => done());
     }
 });

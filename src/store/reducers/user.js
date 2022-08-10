@@ -1,37 +1,45 @@
-import { USER_DATA_REQUEST, USER_DATA_SUCCESS , USER_DATA_FAIL } from "../actions/user";
+import { GET_LOGIN_REQUEST, GET_LOGOUT , GET_LOGIN_SUCCESS , GET_LOGIN_FAIL } from "../actions/user";
 
 const initialState = {
-    loginError: '',
-    loginStatus: '',
+    data: {},
+    err: [],
+    load: false,
+    token: ''
 }
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case USER_DATA_REQUEST: {
+        case GET_LOGIN_REQUEST: {
             return {
-                ...state,
-                loginError: '',
-                loginStatus: 'ok',
+                data: {},
+                err: [],
+                load: true,
+                token: '',
             }
         }
-        case USER_DATA_SUCCESS: {
+        case GET_LOGIN_SUCCESS: {
             return {
-                ...state,
-                loginError: '',
-                loginStatus: 'ok',
+                load: false,
+                data: {...action.payload.data.data},
+                token: action.payload.data.data.auth_key
             }
         }
-        case USER_DATA_FAIL: {
+        case GET_LOGIN_FAIL: {
             return {
                 ...state,
-                loginError: '',
-                loginStatus: 'fail'
+                load: false,
+                err: 'Incorrect login or password',
             }
         }
-        default: {
+        case GET_LOGOUT: {
             return {
-                ...state,
+                data: {},
+                err: [],
+                load: false,
+                token: ''
             }
         }
+        default:
+            return state;
     }
 }

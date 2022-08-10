@@ -40,9 +40,8 @@ const style = StyleSheet.create({
         height: size.size45
     },
     forget: {
-        fontFamily: "Montserrat",
+        fontFamily: "Montserrat-Regular",
         fontStyle: "normal",
-        fontWeight: "400",
         fontSize: size.size14,
         lineHeight: size.size17,
         textAlign: "center",

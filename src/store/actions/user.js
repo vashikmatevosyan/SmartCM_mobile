@@ -1,10 +1,19 @@
-export const USER_DATA_REQUEST = 'USER_DATA_REQUEST';
-export const USER_DATA_SUCCESS = 'USER_DATA_SUCCESS';
-export const USER_DATA_FAIL = 'USER_DATA_FAIL';
+export const GET_LOGIN_REQUEST='GET_LOGIN_REQUEST';
+export const GET_LOGIN_CANCEL='GET_LOGIN_CANCEL';
+export const GET_LOGIN_SUCCESS='GET_LOGIN_SUCCESS';
+export const GET_LOGIN_FAIL='GET_LOGIN_FAIL';
+export const GET_LOGOUT='GET_LOGOUT';
 
-export function userFirstNameRequest(){
-    return{
-        type: USER_DATA_REQUEST,
-        payload: {}
+
+export function getLoginData(data){
+    return {
+        type:GET_LOGIN_REQUEST,
+        payload: data,
+    }
+}
+
+export  function  logOut(){
+    return {
+        type: GET_LOGOUT,
     }
 }
